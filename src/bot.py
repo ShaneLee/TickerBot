@@ -9,8 +9,8 @@ from database import get_indices
 from database import get_db_keys
 from babel.numbers import format_decimal
 from datetime import date
-
 from decimal import Decimal
+import os
 
 NUM = 5
 
@@ -24,6 +24,10 @@ def round_decimal(x):
 def postStatus(update):
     status = api.PostUpdate(update)
     print(status)
+
+def postWithImage(update, media):
+    print(api.PostUpdate(update, media=media))
+    os.remove(media)
 
 def get_change(open, close):
     return str(round_decimal(((close / open) * 100) - 100.00))
@@ -69,3 +73,7 @@ def createMovingMeanTweet(index):
     if (len(tweet) + len(hash_tags) <= 239):
         return tweet + '\n' + hash_tags
     return tweet
+
+def createTweetWithImage(data):
+    tweet = '365 Day Monte Carlo Simulation for ' + data['name'] + '\n Last Close: ' + data['last_close'] + '\n Mean 365 Price: ' + data['mean_365_day_price'] + '\n 365 % Diff: ' + data['pct'] + '\n #' + data['ticker']
+    postWithImage(tweet, 'tempplot.png')
