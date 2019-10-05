@@ -2,7 +2,7 @@
 
 A twitter bot which posts information about stocks and securities. 
 
-<img src="/img/summary.jpg"
+<img src="/img/ticker.jpg"
      alt="Click to go to the twitter bot"
      href="https://twitter.com/TheTickerBot" />
 
